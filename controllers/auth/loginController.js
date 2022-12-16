@@ -50,6 +50,33 @@ const loginController = {
       return next(err);
     }
   },
+
+  async logout(req, res, next) {
+    const logoutSchema = Joi.object({
+      refresh_token: Joi.string().required(),
+    });
+
+    const { error } = logoutSchema.validate(req.body);
+
+    if (error) {
+      return next(error);
+    }
+
+    try {
+      //LogOut means Deleting refreshToken from the Database
+
+      const deletedToken = await RefreshToken.deleteOne({
+        token: req.body.refresh_token,
+      });
+      console.log(deletedToken);
+      if (!deletedToken.deletedCount === 1) {
+        return next(Error());
+      }
+      return res.status(204).send();
+    } catch (error) {
+      next(Error("Something Went wrong in The Database !"));
+    }
+  },
 };
 
 export default loginController;
