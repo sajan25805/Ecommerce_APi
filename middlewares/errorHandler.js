@@ -17,6 +17,7 @@ const errorHandler = (error, req, res, next) => {
 
     ...(config.debugMode === "true" && { originalError: error.message }),
   };
+  console.log(data);
 
   if (error instanceof ValidationError) {
     //Checks if it's an Validation Error !

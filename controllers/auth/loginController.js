@@ -68,10 +68,11 @@ const loginController = {
       const deletedToken = await RefreshToken.deleteOne({
         token: req.body.refresh_token,
       });
-      console.log(deletedToken);
+
       if (!deletedToken.deletedCount === 1) {
         return next(Error());
       }
+      console.log(deletedToken);
       return res.status(204).send();
     } catch (error) {
       next(Error("Something Went wrong in The Database !"));
