@@ -103,5 +103,6 @@ dist
 .dynamodb/
 
 
-/node_modules
-node_modules/
+
+
+
