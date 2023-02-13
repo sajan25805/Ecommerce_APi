@@ -73,7 +73,7 @@ const registerController = {
 
       refresh_token = JwtService.sign(
         { _id: savedUser._id, role: savedUser.role },
-        "1y",
+        "48hr",
         config.refreshSecret
       );
       // database whitelist
@@ -85,5 +85,4 @@ const registerController = {
     res.json({ access_token, refresh_token });
   },
 };
-
 export default registerController;
