@@ -85,4 +85,5 @@ const registerController = {
     res.json({ access_token, refresh_token });
   },
 };
+
 export default registerController;
